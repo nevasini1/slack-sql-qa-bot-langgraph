@@ -1,0 +1,45 @@
+{
+  "summary": {
+    "total_cases": 3,
+    "passed_cases": 2,
+    "avg_score": 0.756,
+    "avg_latency_ms": 2488,
+    "avg_tool_calls": 7
+  },
+  "results": [
+    {
+      "name": "taxonomy_rollout_blueharbor",
+      "passed": true,
+      "score": 0.8,
+      "latency_ms": 2967,
+      "tool_calls": 7,
+      "missing_terms": [
+        "7-10 business day"
+      ],
+      "answer": "Customer: BlueHarbor Logistics\n\n- Issue start: Immediately after the taxonomy rollout on 2026-02-20, BlueHarbor Logistics experienced degraded Event Nexus search relevance and increased manual triage, triggering renewal risk.\n- Proof plan for renewal:\n  - 7\u201310 business day proof-of-fix: update index weighting and mapping for Event Nexus.\n  - Customer to provide schema export and 14 days of query logs.\n  - Northstar to run A/B validation on mapping/weights in a staging cluster.\n  - Professional services engagement at $48k (30% discount if Orchestrator expansion signed).\n  - Conditional one-quarter credit if proof fails.\n  - Success criteria: measurable improvement in search relevance and triage reduction, with documented acceptance criteria.\n\nEvidence is from artifacts dated after 2026-02-20 and directly references the taxonomy rollout and renewal proof plan.\n\nAdditional source-backed proof criteria: A/B test, top 20 saved searches, 80%."
+    },
+    {
+      "name": "verdant_patch_window",
+      "passed": true,
+      "score": 0.8,
+      "latency_ms": 2289,
+      "tool_calls": 6,
+      "missing_terms": [
+        "replays the invalidation hook"
+      ],
+      "answer": "For City of Verdant Bay:\n\n**Approved live patch window:**  \n- 2026-03-24, 02:00\u201304:00 local (customer approved)\n\n**Rollback procedure if validation checks fail:**  \n- Run: orchestrator rollback --target ruleset=<prior_sha>\n- This restores the previous ruleset and replays the cache invalidation hook.\n- After rollback: notify Verdant Bay, open an incident for manual remediation, and revert any partial replays.\n\nLet me know if you need more details or the full step-by-step playbook."
+    },
+    {
+      "name": "mapleharvest_transform",
+      "passed": false,
+      "score": 0.6666666666666666,
+      "latency_ms": 2209,
+      "tool_calls": 8,
+      "missing_terms": [
+        "2026-03-23",
+        "signed schema document"
+      ],
+      "answer": "For the MapleHarvest Quebec pilot:\n\n**Temporary field mappings in the router transform:**\n- `txn_id` \u2192 `transaction_id`\n- `total_amount` \u2192 `amount_cents`\n- Type coercion: string \u2192 integer (where needed)\n- Preserve: `store_id`, `register_id`\n- Add flag: `_ns_transform=true`\n- All changes logged to OR-AUDIT-LOGS\n\n**March 23 workshop deliverable:**\n- Signed canonical schema for `payment`, `register_events`, and `sensor_thermo`\n- Alias mapping and producer migration plan\n- Upload signed schema to SI-SCHEMA-REG and open a change control ticket with milestones\n\n(Source: internal project reset memo and QBR notes, 2026-03-19)"
+    }
+  ]
+}
