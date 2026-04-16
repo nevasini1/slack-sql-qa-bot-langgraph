@@ -25,6 +25,35 @@ The handler posts a **“Working on it…”** message, then runs the LangGraph 
 
 I also added a **delayed progress line** (after ~8 seconds) that updates the placeholder text. It is not magic—it is just UX honesty when retrieval takes longer than people expect.
 
+When my brain gets fuzzy I draw the box diagram below. GitHub renders Mermaid in the markdown preview; if you are reading this somewhere that does not, you still have the prose above.
+
+```mermaid
+flowchart LR
+  subgraph slack [Slack]
+    U[User]
+    EV[Events API]
+  end
+  subgraph srv [Server]
+    F["FastAPI POST /slack/events"]
+    B[Bolt AsyncApp verify plus route]
+    L["asyncio.Lock per channel thread user"]
+    W["asyncio.to_thread QaAgent.invoke"]
+  end
+  subgraph agent [LangGraph]
+    G[create_react_agent]
+    T[Tools FTS plus SQL helpers]
+    C[SqliteSaver checkpoints]
+  end
+  subgraph data [SQLite]
+    APP[(APP_SQLITE_PATH corpus)]
+    MEM[(LANGGRAPH_CHECKPOINTER_PATH)]
+  end
+  U --> EV --> F --> B --> L --> W --> G
+  G --> T --> APP
+  G --> C --> MEM
+  B -->|chat.postMessage and chat.update| EV
+```
+
 ## Why LangGraph (and what I actually used)
 
 I used **`create_react_agent`** from LangGraph’s prebuilt module: a **ReAct-style** loop where the model can call tools, read results, and iterate. I did not build a custom state machine from scratch; I felt like the assignment was about **grounding and integration**, not about reinventing a planner DSL.
