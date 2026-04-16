@@ -1,7 +1,5 @@
 # Design notes (how I actually built this)
 
-I wrote this myself—no boilerplate from a template pasted in verbatim. It is how I think about the system after living in it for a while.
-
 ## What I was trying to solve
 
 I needed a Slack bot that answers questions **only** from the take-home SQLite database. I did not want a chatty model that “kind of remembers” your product; I wanted something closer to **an analyst with read-only access to one warehouse**. If the row is not there, the bot should say so.
