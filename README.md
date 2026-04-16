@@ -132,6 +132,6 @@ Then test in Slack with the exact example queries from the assignment in a singl
 
 This checks both retrieval quality and conversation memory.
 
-## 10) Human design writeup helper
+## 10) Design writeup
 
-Use `DESIGN_TEMPLATE.md` as a checklist while writing your own human-authored `DESIGN.md`.
+See `DESIGN.md` for architecture, security, trade-offs, and the system diagram.
